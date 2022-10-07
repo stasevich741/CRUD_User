@@ -1,26 +1,27 @@
 package com.example.amigo.entity;
 
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.UUID;
 
-//@Value
 //@FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
-@Setter
-@ToString
 public class User {
 
-  private final UUID userId;
-  private final String firstName;
-  private final String lastName;
-  private final Gender gender;
-  private final Integer age;
-  private final String email;
+    @Setter
+    private UUID userId;
+    private String firstName;
+    private String lastName;
+    private Gender gender;
+    private Integer age;
+    private String email;
 
-   public enum Gender {
+    public enum Gender {
         MALE, FEMALE
     }
 }
