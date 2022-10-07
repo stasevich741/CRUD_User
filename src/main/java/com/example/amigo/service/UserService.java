@@ -38,7 +38,7 @@ public class UserService {
     }
 
     public int updateUser(User user) {
-        Optional<User> optionalUser = getUser(user.getUserId());
+        Optional<User> optionalUser = getUser(user.getUserUid());
         if (optionalUser.isPresent()) {
             return repository.updateUser(user);
         }
@@ -55,7 +55,6 @@ public class UserService {
 
     public int insertUser(User user) {
         UUID userUid = UUID.randomUUID();
-        user.setUserId(userUid);
-        return repository.insertUser(userUid, user);
+        return repository.insertUser(userUid, User.newUser(userUid, user));
     }
 }

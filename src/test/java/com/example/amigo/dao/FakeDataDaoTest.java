@@ -32,7 +32,7 @@ class FakeDataDaoTest {
         assertThat(user.getGender()).isEqualTo(User.Gender.MALE);
         assertThat(user.getAge()).isEqualTo(21);
         assertThat(user.getEmail()).isEqualTo("jones@mail.ru");
-        assertThat(user.getUserId()).isNotNull();
+        assertThat(user.getUserUid()).isNotNull();
     }
 
     @Test
@@ -57,7 +57,7 @@ class FakeDataDaoTest {
 
     @Test
     void should_Update_User() {
-        UUID joeUserUId = repository.getAllUsers().get(0).getUserId();
+        UUID joeUserUId = repository.getAllUsers().get(0).getUserUid();
         User newJoe = new User(joeUserUId, "anna", "montata", User.Gender.FEMALE, 55, "anna@mail.ru");
 
 
@@ -72,7 +72,7 @@ class FakeDataDaoTest {
 
     @Test
     void should_Remove_User_By_UId() {
-        UUID joeUserUId = repository.getAllUsers().get(0).getUserId();
+        UUID joeUserUId = repository.getAllUsers().get(0).getUserUid();
 
         repository.removeUser(joeUserUId);
 

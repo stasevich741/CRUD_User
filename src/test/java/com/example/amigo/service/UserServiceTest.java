@@ -169,8 +169,8 @@ class UserServiceTest {
         assertThat(user.getGender()).isEqualTo(User.Gender.FEMALE);
         assertThat(user.getAge()).isEqualTo(55);
         assertThat(user.getEmail()).isEqualTo("anna@mail.ru");
-        assertThat(user.getUserId()).isNotNull();
-        assertThat(user.getUserId()).isInstanceOf(UUID.class);
+        assertThat(user.getUserUid()).isNotNull();
+        assertThat(user.getUserUid()).isInstanceOf(UUID.class);
     }
 
 }
