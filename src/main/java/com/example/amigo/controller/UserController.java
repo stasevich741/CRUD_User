@@ -26,6 +26,7 @@ public class UserController {
 
     //    @GetMapping("/getAll")
     @RequestMapping(method = RequestMethod.GET
+            , produces = MediaType.APPLICATION_JSON_VALUE
 //            , path = "getAll"
     )
     public List<User> getAllUsers(@QueryParam("gender") String gender) {
@@ -33,7 +34,9 @@ public class UserController {
     }
 
     //    @GetMapping("{userUid}")
-    @RequestMapping(method = RequestMethod.GET, path = "{userUid}")
+    @RequestMapping(method = RequestMethod.GET
+            , produces = MediaType.APPLICATION_JSON_VALUE
+            , path = "{userUid}")
     public ResponseEntity<?> getUserByUId(@PathVariable("userUid") UUID userUid) {
         return service.getUser(userUid).<ResponseEntity<?>>map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -41,7 +44,9 @@ public class UserController {
     }
 
     //    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST
+            , produces = MediaType.APPLICATION_JSON_VALUE
+            , consumes = MediaType.APPLICATION_JSON_VALUE)
 // integer -because return response code
     public ResponseEntity<Integer> insertNewUser(@RequestBody User user) {
         int result = service.insertUser(user);
@@ -49,7 +54,9 @@ public class UserController {
     }
 
     //    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.PUT
+            , produces = MediaType.APPLICATION_JSON_VALUE
+            , consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Integer> updateUser(@RequestBody User user) {
         int result = service.updateUser(user);
 
@@ -57,7 +64,9 @@ public class UserController {
     }
 
     //    @DeleteMapping("{userUid}")
-    @RequestMapping(method = RequestMethod.DELETE, path = "{userUid}")
+    @RequestMapping(method = RequestMethod.DELETE
+            , produces = MediaType.APPLICATION_JSON_VALUE
+            , path = "{userUid}")
     public ResponseEntity<Integer> deleteUser(@PathVariable("userUid") UUID userUid) {
         int result = service.removeUser(userUid);
         return getIntegerResponseEntity(result);
