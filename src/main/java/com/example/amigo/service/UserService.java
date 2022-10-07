@@ -11,21 +11,21 @@ import java.util.UUID;
 @Service
 public class UserService {
 
-   private FakeDataDao repository;
+    private FakeDataDao repository;
 
     public UserService(FakeDataDao fakeDataDao) {
         this.repository = fakeDataDao;
     }
 
-    List<User> getAllUsers() {
+    public List<User> getAllUsers() {
         return repository.getAllUsers();
     }
 
-    Optional<User> getUser(UUID userId) {
+    public Optional<User> getUser(UUID userId) {
         return repository.getUserById(userId);
     }
 
-    int updateUser(User user) {
+    public int updateUser(User user) {
         Optional<User> optionalUser = getUser(user.getUserId());
         if (optionalUser.isPresent()) {
             repository.updateUser(user);
@@ -34,7 +34,7 @@ public class UserService {
         return -1;
     }
 
-    int removeUser(UUID userId) {
+    public int removeUser(UUID userId) {
         Optional<User> optionalUser = getUser(userId);
         if (optionalUser.isPresent()) {
             repository.removeUser(userId);
@@ -43,7 +43,7 @@ public class UserService {
         return -1;
     }
 
-    int insertUser(User user) {
+    public int insertUser(User user) {
         return repository.insertUser(UUID.randomUUID(), user);
     }
 
