@@ -8,7 +8,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.QueryParam;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -23,9 +25,11 @@ public class UserController {
     }
 
     //    @GetMapping("/getAll")
-    @RequestMapping(method = RequestMethod.GET, path = "getAll")
-    public List<User> getAllUsers() {
-        return service.getAllUsers();
+    @RequestMapping(method = RequestMethod.GET
+//            , path = "getAll"
+    )
+    public List<User> getAllUsers(@QueryParam("gender") String gender) {
+        return service.getAllUsers(Optional.ofNullable(gender));
     }
 
     //    @GetMapping("{userUid}")

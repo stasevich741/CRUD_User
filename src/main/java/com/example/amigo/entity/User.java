@@ -1,17 +1,19 @@
 package com.example.amigo.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.UUID;
 
 //@FieldDefaults(level = AccessLevel.PRIVATE)
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class User {
 
+    @Setter
     private UUID userId;
     private String firstName;
     private String lastName;

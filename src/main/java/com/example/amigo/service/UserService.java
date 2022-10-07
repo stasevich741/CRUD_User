@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -17,8 +18,19 @@ public class UserService {
         this.repository = fakeDataDao;
     }
 
-    public List<User> getAllUsers() {
-        return repository.getAllUsers();
+    public List<User> getAllUsers(Optional<String> gender) {
+        List<User> allUsers = repository.getAllUsers();
+        if (gender.isEmpty()) {
+            return allUsers;
+        }
+        try {
+            User.Gender theGender = User.Gender.valueOf(gender.get().toUpperCase());
+            return allUsers.stream()
+                    .filter(user -> user.getGender().equals(theGender))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new IllegalStateException("Invalid gender", e);
+        }
     }
 
     public Optional<User> getUser(UUID userId) {
@@ -28,8 +40,7 @@ public class UserService {
     public int updateUser(User user) {
         Optional<User> optionalUser = getUser(user.getUserId());
         if (optionalUser.isPresent()) {
-            repository.updateUser(user);
-            return 1;
+            return repository.updateUser(user);
         }
         return -1;
     }
@@ -37,14 +48,14 @@ public class UserService {
     public int removeUser(UUID userId) {
         Optional<User> optionalUser = getUser(userId);
         if (optionalUser.isPresent()) {
-            repository.removeUser(userId);
-            return 1;
+            return repository.removeUser(userId);
         }
         return -1;
     }
 
     public int insertUser(User user) {
-        return repository.insertUser(UUID.randomUUID(), user);
+        UUID userUid = UUID.randomUUID();
+        user.setUserId(userUid);
+        return repository.insertUser(userUid, user);
     }
-
 }

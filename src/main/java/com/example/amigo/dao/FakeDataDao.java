@@ -40,9 +40,9 @@ public class FakeDataDao implements UserDao {
     }
 
     @Override
-    public int insertUser(UUID userId, User user) {
-        user.setUserId(userId);
-        database.put(userId, user);
+    public int insertUser(UUID userUid, User user) {
+        user.setUserId(userUid);
+        database.put(userUid, user);
         return 1;
     }
 }
