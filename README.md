@@ -1,3 +1,3 @@
-## CRUD app with mvc and  resteasy by paypal
+## CRUD mvc app 
 ### used technologies 
-* spring boot, jackson, lombok, resteasy 
+* spring boot, jackson, lombok
