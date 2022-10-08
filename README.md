@@ -1,3 +1,3 @@
-# CRUD app to managed users 
-## used technologies 
-* spring boot, jackson, lombok, resteasy by paypal
+## CRUD app with mvc and  resteasy by paypal
+### used technologies 
+* spring boot, jackson, lombok, resteasy 
