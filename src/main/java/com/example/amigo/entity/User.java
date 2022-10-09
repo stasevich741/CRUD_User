@@ -1,6 +1,5 @@
 package com.example.amigo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +12,7 @@ import java.util.UUID;
 @ToString
 @Builder
 //@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@JsonIgnoreProperties(value = {"firstName", "lastName"})
+//@JsonIgnoreProperties(value = {"firstName", "lastName"})
 public class User {
 
     private final UUID userUid;
@@ -28,7 +27,6 @@ public class User {
         MALE, FEMALE
     }
 
-    @JsonProperty("id")
     public UUID getUserUid() {
         return userUid;
     }
@@ -41,12 +39,14 @@ public class User {
         return LocalDate.now().minusYears(age).getYear();
     }
 
-    public User(@JsonProperty("userUid") UUID userUid
-            , @JsonProperty("firstName") String firstName
-            , @JsonProperty("lastName") String lastName
-            , @JsonProperty("gender") Gender gender
-            , @JsonProperty("age") Integer age
-            , @JsonProperty("email") String email) {
+    public User(@JsonProperty("id") UUID userUid
+            , @JsonProperty(value = "firstName", access = JsonProperty.Access.WRITE_ONLY)
+                String firstName
+            , @JsonProperty(value = "lastName", access = JsonProperty.Access.WRITE_ONLY)
+                String lastName
+            , @JsonProperty(value = "gender") Gender gender
+            , @JsonProperty(value = "age") Integer age
+            , @JsonProperty(value = "email") String email) {
         this.userUid = userUid;
         this.firstName = firstName;
         this.lastName = lastName;
