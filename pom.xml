@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>customer_app</module>
+        <module>crud-mvc</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
