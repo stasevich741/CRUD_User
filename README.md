@@ -7,7 +7,13 @@ _________
 
 * spring boot, jackson, lombok,junit, mockito
 _________
-### 2 module -CRUD customer mvc app 
+### 2 module -customer_app 
 ### inside
 
 * spring boot, validation, lombok,junit, mockito, H2,exceptionHandler
+
+_________
+### 3 module -crud mvc 
+### inside
+
+* spring boot, postgres, lombok
